@@ -2,13 +2,13 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
-const lists = ref<string[]>([
+const lists = ref([
     { id: 1, name: "白頭翁的特性", isfoucs: true },
     { id: 2, name: "白頭翁的故事", isfoucs: false },
     { id: 3, name: "白頭翁的美照", isfoucs: false },
     { id: 4, name: "白頭翁的危機", isfoucs: false },
 ]);
-const describes = ref<string[]>([
+const describes = ref([
     {
         id: 1,
         text: "白頭鵯體長約17到22公分，額至頭頂純黑色而富有光澤，兩眼上方至後枕白色，形成一白色枕環。耳羽後部有一白斑，此白環與白斑在黑色的頭部均極為醒目，老鳥的枕羽(後頭部)更潔白，所以又叫「白頭翁」。",
@@ -37,18 +37,7 @@ const clickList = (id: number) => {
         <div class="sidebar">
             <span class="title">
                 <div>白頭翁不吃小米</div>
-                <div
-                    style="
-                        width: 100px;
-                        height: 100px;
-                        border-radius: 50%;
-                        box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.3);
-                        display: flex;
-                        justify-content: center;
-                        text-align: center;
-                        position: relative;
-                    "
-                >
+                <div class="logoWrap">
                     <div class="container1">
                         <div class="scale-wrapper">
                             <div class="blackbird-logo"></div>
@@ -101,7 +90,7 @@ const clickList = (id: number) => {
     width: 100%;
     height: 100vh;
     .sidebar {
-        width: 20%;
+        width: 345px;
         background-color: #f0f0f0;
         text-align: center;
         .title {
@@ -110,6 +99,21 @@ const clickList = (id: number) => {
             font-size: 30px;
             margin-top: 78.33px;
             margin-bottom: 75.67px;
+            position: relative;
+            .logoWrap {
+                background-color: #fff;
+                position: absolute;
+                width: 100px;
+                height: 100px;
+                border-radius: 50%;
+                box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.5);
+                display: flex;
+                justify-content: center;
+                text-align: center;
+                bottom: -50%;
+                right: -57%;
+                z-index: 1;
+            }
         }
         .lists {
             cursor: pointer;
@@ -118,7 +122,7 @@ const clickList = (id: number) => {
         }
     }
     .content {
-        width: 80%;
+        width: calc(100% - 345px);
         display: flex;
         flex-direction: column;
         height: 100vh;
@@ -149,11 +153,13 @@ const clickList = (id: number) => {
             }
         }
         .description {
+            padding: 0px 50px;
             background-color: #dcccbc;
             display: flex;
             justify-content: space-around;
             align-items: center;
             height: 40%;
+            overflow: auto;
             .describes {
                 display: flex;
                 height: 225px;
