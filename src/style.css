@@ -1,5 +1,17 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Noto Sans", sans-serif;
+  padding: 0;
+  margin: 0;
+
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-weight: 400;
+}
+
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -9,26 +21,13 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-body {
-  margin: 0;
-  /* display: flex;
-  place-items: center; */
-  /* min-width: 320px; */
-  /* min-height: 100vh; */
-  padding: 0;
-  font-family: "Noto Sans", sans-serif;
-  font-optical-sizing: auto;
-  font-style: normal;
-  font-weight: 400;
-}
-
 
 /**黑鳥 Logo */
 /**主體 */
 .blackbird-logo {
   position: relative;
   width: 15em;
-  height: 8em;
+  height: 12em;
   background-color: #fff;
   border-radius: 90% 40% 60% 0%;
   border-top: 2em solid #000;

@@ -36,9 +36,14 @@ const clickList = (id: number) => {
     <div class="wrap">
         <div class="sidebar">
             <span class="title">
-                <div>白頭翁不吃小米</div>
+                <div class="burger-icon">
+                    <span class="line line1"></span>
+                    <span class="line line2"></span>
+                    <span class="line line3"></span>
+                </div>
+                <div class="titleName">白頭翁不吃小米</div>
                 <div class="logoWrap">
-                    <div class="container1">
+                    <div class="container">
                         <div class="scale-wrapper">
                             <div class="blackbird-logo"></div>
                         </div>
@@ -100,6 +105,35 @@ const clickList = (id: number) => {
             margin-top: 78.33px;
             margin-bottom: 75.67px;
             position: relative;
+            .burger-icon {
+                position: absolute;
+                left: 18px;
+                bottom: 30px;
+                width: 24px;
+                height: 24px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                gap: 6px;
+                align-items: flex-start;
+                .line {
+                    height: 6px;
+                    background-color: black;
+                    border-radius: 2px;
+                    display: block;
+                }
+                /* 三條線寬度不同 */
+                .line1 {
+                    width: 90%;
+                }
+                .line2 {
+                    width: 60%;
+                }
+                .line3 {
+                    width: 100%;
+                }
+            }
+
             .logoWrap {
                 background-color: #fff;
                 position: absolute;
@@ -210,7 +244,7 @@ const clickList = (id: number) => {
     font-weight: 700;
 }
 
-.container1 {
+.container {
     position: absolute;
     top: 25px;
     left: 18px;
@@ -221,5 +255,102 @@ const clickList = (id: number) => {
 .scale-wrapper {
     transform: scale(0.14);
     transform-origin: top left;
+    .blackbird-logo {
+        width: 13em;
+        height: 12em;
+    }
+}
+
+/* 手機寬度 */
+@media (max-width: 600px) {
+    .wrap {
+        // display: none;
+        flex-wrap: wrap;
+        .sidebar {
+            background-color: #fff;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            text-align: center;
+            flex-wrap: wrap;
+            z-index: 1;
+            .title {
+                background-color: #fff;
+                margin-top: 0px;
+                // margin: auto;
+                margin-bottom: 0px;
+                font-size: 24px;
+                width: 100%;
+                height: 88px;
+                display: inline-flex;
+                .titleName {
+                    margin: auto;
+                }
+                .logoWrap {
+                    // display: none;
+                    width: 50px;
+                    height: 50px;
+                    right: 18px;
+                    bottom: 20px;
+                    .container {
+                        position: absolute;
+                        top: 12px;
+                        left: 11px;
+                        width: 60px;
+                        height: 60px;
+                        .scale-wrapper {
+                            transform: scale(0.08);
+                            transform-origin: top left;
+                        }
+                    }
+                }
+            }
+            .lists {
+                width: 100%;
+                padding-bottom: 21.74px;
+                background-color: #fff;
+            }
+        }
+        .content {
+            width: 100%;
+            height: calc(100vh - 100px);
+            .picture {
+                height: 50%;
+                img {
+                    object-fit: cover;
+                }
+            }
+            .description {
+                height: 50%;
+                padding: 20px;
+                flex-direction: column;
+                align-items: center;
+                .describes {
+                    width: 100%;
+                    margin-bottom: 20px;
+                    .describTitle {
+                        font-size: 24px;
+                        margin-right: 20px;
+                    }
+                    p {
+                        font-size: 14px;
+                        width: auto;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 600px) {
+    .wrap {
+        .sidebar {
+            .title {
+                .burger-icon {
+                    display: none;
+                }
+            }
+        }
+    }
 }
 </style>
