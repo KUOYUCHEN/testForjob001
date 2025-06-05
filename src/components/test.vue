@@ -35,7 +35,27 @@ const clickList = (id: number) => {
 <template>
     <div class="wrap">
         <div class="sidebar">
-            <span class="title">白頭翁不吃小米</span>
+            <span class="title">
+                <div>白頭翁不吃小米</div>
+                <div
+                    style="
+                        width: 100px;
+                        height: 100px;
+                        border-radius: 50%;
+                        box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.3);
+                        display: flex;
+                        justify-content: center;
+                        text-align: center;
+                        position: relative;
+                    "
+                >
+                    <div class="container1">
+                        <div class="scale-wrapper">
+                            <div class="blackbird-logo"></div>
+                        </div>
+                    </div>
+                </div>
+            </span>
             <div class="lists" v-for="list in lists" :key="list.id">
                 <span
                     :class="{ focus: list.isfoucs }"
@@ -182,5 +202,18 @@ const clickList = (id: number) => {
     text-decoration: underline;
     text-underline-offset: 4px;
     font-weight: 700;
+}
+
+.container1 {
+    position: absolute;
+    top: 25px;
+    left: 18px;
+    width: 60px;
+    height: 60px;
+}
+
+.scale-wrapper {
+    transform: scale(0.14);
+    transform-origin: top left;
 }
 </style>
