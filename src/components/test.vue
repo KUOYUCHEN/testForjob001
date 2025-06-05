@@ -2,6 +2,8 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
+// mob選單控制
+const menuToggle = ref(false);
 const lists = ref([
     { id: 1, name: "白頭翁的特性", isfoucs: true },
     { id: 2, name: "白頭翁的故事", isfoucs: false },
@@ -36,7 +38,7 @@ const clickList = (id: number) => {
     <div class="wrap">
         <div class="sidebar">
             <span class="title">
-                <div class="burger-icon">
+                <div class="burger-icon" @click="menuToggle = !menuToggle">
                     <span class="line line1"></span>
                     <span class="line line2"></span>
                     <span class="line line3"></span>
@@ -50,7 +52,7 @@ const clickList = (id: number) => {
                     </div>
                 </div>
             </span>
-            <div class="lists" v-for="list in lists" :key="list.id">
+            <div class="lists pc" v-for="list in lists" :key="list.id">
                 <span
                     :class="{ focus: list.isfoucs }"
                     @click="clickList(list.id)"
@@ -58,6 +60,17 @@ const clickList = (id: number) => {
                     {{ list.name }}
                 </span>
             </div>
+
+            <template v-if="menuToggle">
+                <div class="lists mob" v-for="list in lists" :key="list.id">
+                    <span
+                        :class="{ focus: list.isfoucs }"
+                        @click="clickList(list.id)"
+                    >
+                        {{ list.name }}
+                    </span>
+                </div>
+            </template>
         </div>
         <div class="content">
             <div class="picture">
@@ -306,8 +319,11 @@ const clickList = (id: number) => {
                 }
             }
             .lists {
+                &.pc {
+                    display: none;
+                }
                 width: 100%;
-                padding-bottom: 21.74px;
+                padding-bottom: 0px;
                 background-color: #fff;
             }
         }
@@ -345,6 +361,11 @@ const clickList = (id: number) => {
 @media (min-width: 600px) {
     .wrap {
         .sidebar {
+            .lists {
+                &.mob {
+                    display: none;
+                }
+            }
             .title {
                 .burger-icon {
                     display: none;
