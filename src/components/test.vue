@@ -18,7 +18,7 @@ const describes = ref([
     },
     {
         id: 2,
-        text: "白頭翁和麻雀、綠繡眼合稱「城市三寶」，常成群出現在平原區灌木叢、丘陵樹林地帶，以及校園、公園、庭院、行道中的各種高高的電線與樹上。",
+        text: "白頭翁和麻雀、綠繡眼合　稱「城市三寶」，常成群出 現在平原區灌木叢、丘陵樹林地帶，以及校園、公園、庭院、行道中的各種高高的電線與樹上。",
         name: "棲地",
     },
     {
@@ -170,7 +170,7 @@ const clickList = (id: number) => {
         .lists {
             cursor: pointer;
             font-size: 18px;
-            margin-bottom: 21.74px;
+            margin-bottom: 17.53px;
         }
     }
     .content {
@@ -193,6 +193,7 @@ const clickList = (id: number) => {
                     margin-bottom: 4px;
                 }
                 .picText {
+                    font-weight: 700;
                     line-height: 16px;
                 }
             }
