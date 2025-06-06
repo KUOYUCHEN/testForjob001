@@ -39,9 +39,14 @@ const clickList = (id: number) => {
         <div class="sidebar">
             <span class="title">
                 <div class="burger-icon" @click="menuToggle = !menuToggle">
-                    <span class="line line1"></span>
-                    <span class="line line2"></span>
-                    <span class="line line3"></span>
+                    <template v-if="!menuToggle">
+                        <span class="line line1"></span>
+                        <span class="line line2"></span>
+                        <span class="line line3"></span>
+                    </template>
+                    <template v-else>
+                        <img src="../assets/cancel.svg" alt="cancel" />
+                    </template>
                 </div>
                 <div class="titleName">白頭翁不吃小米</div>
                 <div class="logoWrap">
@@ -329,7 +334,6 @@ const clickList = (id: number) => {
         }
         .content {
             width: 100%;
-            height: calc(100vh - 100px);
             .picture {
                 height: 50%;
                 img {
@@ -338,20 +342,26 @@ const clickList = (id: number) => {
             }
             .description {
                 height: 50%;
-                padding: 20px;
+                padding: 50.5px 36.38px;
                 flex-direction: column;
                 align-items: center;
                 .describes {
                     width: 100%;
-                    margin-bottom: 20px;
+                    margin-bottom: 50.5px;
                     .describTitle {
                         font-size: 24px;
                         margin-right: 20px;
+                        .point {
+                            bottom: 15px;
+                        }
                     }
                     p {
                         font-size: 14px;
                         width: auto;
                     }
+                }
+                :last-child {
+                    margin-bottom: 0px;
                 }
             }
         }
