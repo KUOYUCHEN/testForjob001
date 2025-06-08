@@ -10,20 +10,38 @@ const lists = ref([
     { id: 3, name: "白頭翁的美照", isfoucs: false },
     { id: 4, name: "白頭翁的危機", isfoucs: false },
 ]);
+const wrapPunctuationWithSub = (text: string) => {
+    return text.replace(/([，。！？、；：])/g, "<sub>$1</sub>");
+};
 const describes = ref([
     {
         id: 1,
-        text: "白頭鵯體長約17到22公分，額至頭頂純黑色而富有光澤，兩眼上方至後枕白色，形成一白色枕環。耳羽後部有一白斑，此白環與白斑在黑色的頭部均極為醒目，老鳥的枕羽(後頭部)更潔白，所以又叫「白頭翁」。",
+        text: wrapPunctuationWithSub(
+            "白頭鵯體長約17到22公分，額至頭頂純黑色而富有光　澤，兩眼上方至後枕白色，形成一白色枕環。耳羽後部有一白斑，此白環與白斑在黑色的頭部均極為醒目，老鳥的枕羽(後頭部)更潔白，所以又叫「白頭翁」。"
+        ),
+        mobText: wrapPunctuationWithSub(
+            "白頭鵯體長約17到22公分，額至頭頂純黑色而富有光澤，兩眼上方至後枕白色，形成一白色枕環。耳羽後部有一白斑，此白環與白斑在黑色的頭部均極為醒目，老鳥的枕羽(後頭部)更潔白，所以又叫「白頭翁」。"
+        ),
         name: "外觀",
     },
     {
         id: 2,
-        text: "白頭翁和麻雀、綠繡眼合　稱「城市三寶」，常成群出 現在平原區灌木叢、丘陵樹林地帶，以及校園、公園、庭院、行道中的各種高高的電線與樹上。",
+        text: wrapPunctuationWithSub(
+            "白頭翁和麻雀、綠繡眼合　稱「城市三寶」，常成群出現在平原區灌木叢、丘陵樹林地帶，以及校園、公園、庭院、行道中的各種高高的電線與樹上。"
+        ),
+        mobText: wrapPunctuationWithSub(
+            "白頭翁和麻雀、綠繡眼合稱「城市三寶」，常成群出現在平原區灌木叢、丘陵樹林地帶，以及校園、公園、庭院、行道中的各種高高的電線與樹　上。"
+        ),
         name: "棲地",
     },
     {
         id: 3,
-        text: "以果樹的漿果和種子為主食，並時常飛入果園偷吃果實，還會吃嫩葉嫩芽，尤其是胡蝶蘭的嫩葉嫩芽葉，偶爾啄食昆蟲。",
+        text: wrapPunctuationWithSub(
+            "以果樹的漿果和種子為主　食，並時常飛入果園偷吃果實，還會吃嫩葉嫩芽，尤其是胡蝶蘭的嫩葉嫩芽葉，偶爾啄食昆蟲。"
+        ),
+        mobText: wrapPunctuationWithSub(
+            "以果樹的漿果和種子為主食，並時常飛入果園偷吃果實，還會吃嫩葉嫩芽，尤其是胡蝶蘭的嫩葉嫩芽葉，偶爾啄食昆　蟲。"
+        ),
         name: "食性",
     },
 ]);
@@ -82,8 +100,8 @@ const clickList = (id: number) => {
                 <div class="picContent">
                     <div class="picTitle">白頭翁 (Chinese bulbul)</div>
                     <span class="picText"
-                        >又名白頭鵯。以果實、昆蟲為主食，無法消化小米、穀類。平均壽命約
-                        8~10 年。</span
+                        >又名白頭鵯<sub>。</sub>以果實<sub>、</sub>昆蟲為主食<sub>，</sub>無法消化小米<sub>、</sub>穀類<sub>。</sub>平均壽命約
+                        8~10 年<sub>。</sub></span
                     >
                 </div>
                 <img src="../assets/img001.svg" alt="" />
@@ -98,16 +116,15 @@ const clickList = (id: number) => {
                         <div class="point"></div>
                         {{ describe.name }}
                     </div>
-                    <p>
-                        {{ describe.text }}
-                    </p>
+                    <p class="pc" v-html="describe.text"></p>
+                    <p class="mob" v-html="describe.mobText"></p>
                 </div>
             </div>
         </div>
     </div>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .wrap {
     display: flex;
     width: 100%;
@@ -123,6 +140,9 @@ const clickList = (id: number) => {
             margin-top: 78.33px;
             margin-bottom: 75.67px;
             position: relative;
+            .titleName {
+                font-weight: 700;
+            }
             .burger-icon {
                 position: absolute;
                 left: 18px;
@@ -182,18 +202,21 @@ const clickList = (id: number) => {
             position: relative;
             .picContent {
                 position: absolute;
-                bottom: 36.85px;
-                right: 44.75px;
+                left: 36px;
+                right: 36px;
+                bottom: 36px;
                 color: #fff;
                 .picTitle {
                     font-weight: 700;
                     font-size: 48px;
                     text-align: right;
                     line-height: 48px;
-                    margin-bottom: 4px;
+                    margin-bottom: 16px;
                 }
                 .picText {
-                    font-weight: 700;
+                    display: block;
+                    text-align: right;
+                    font-weight: 400;
                     line-height: 16px;
                 }
             }
@@ -214,6 +237,7 @@ const clickList = (id: number) => {
             height: 40%;
             overflow: auto;
             .describes {
+                font-size: 16px;
                 display: flex;
                 height: 225px;
                 .describTitle {
@@ -246,9 +270,14 @@ const clickList = (id: number) => {
                     }
                 }
                 p {
+                    &.mob {
+                        display: none;
+                    }
                     width: 200px;
                     font-weight: 400;
                     font-size: 16px;
+                    letter-spacing: normal;
+                    line-height: 1.4;
                 }
             }
         }
@@ -336,13 +365,21 @@ const clickList = (id: number) => {
         .content {
             width: 100%;
             .picture {
+                .picContent {
+                    left: 36px;
+                    right: 36px;
+                    bottom: 17px;
+                    .picTitle {
+                        margin-bottom: 9px;
+                    }
+                }
                 height: 50%;
                 img {
                     object-fit: cover;
                 }
             }
             .description {
-                height: 50%;
+                height: unset;
                 padding: 50.5px 36.38px;
                 flex-direction: column;
                 align-items: center;
@@ -350,15 +387,20 @@ const clickList = (id: number) => {
                     width: 100%;
                     margin-bottom: 50.5px;
                     .describTitle {
-                        font-size: 24px;
                         margin-right: 20px;
                         .point {
-                            bottom: 15px;
+                            bottom: -10px;
                         }
                     }
                     p {
-                        font-size: 14px;
+                        &.pc {
+                            display: none;
+                        }
+                        &.mob {
+                            display: block;
+                        }
                         width: auto;
+                        letter-spacing: 0.12em;
                     }
                 }
                 :last-child {
@@ -372,6 +414,13 @@ const clickList = (id: number) => {
 @media (min-width: 600px) {
     .wrap {
         .sidebar {
+            content {
+                .description {
+                    &.pc {
+                        display: block;
+                    }
+                }
+            }
             .lists {
                 &.mob {
                     display: none;
@@ -384,5 +433,11 @@ const clickList = (id: number) => {
             }
         }
     }
+}
+
+sub {
+    font-size: 16px;
+    transform: translate(-5px, 2px);
+    display: inline-block;
 }
 </style>
