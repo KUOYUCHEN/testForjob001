@@ -104,7 +104,7 @@ const clickList = (id: number) => {
                         8~10 年<sub>。</sub></span
                     >
                 </div>
-                <img src="../assets/img001.svg" alt="" />
+                <img src="https://i.ibb.co/7dDqfvZn/img001.png" alt="" />
             </div>
             <div class="description">
                 <div
@@ -310,7 +310,7 @@ const clickList = (id: number) => {
 }
 
 /* 手機寬度 */
-@media (max-width: 600px) {
+@media (max-width: 375px) {
     .wrap {
         // display: none;
         flex-wrap: wrap;
@@ -364,6 +364,7 @@ const clickList = (id: number) => {
         }
         .content {
             width: 100%;
+            height: calc(100vh - 88px);
             .picture {
                 .picContent {
                     left: 36px;
@@ -379,6 +380,7 @@ const clickList = (id: number) => {
                 }
             }
             .description {
+                height: 50%;
                 height: unset;
                 padding: 50.5px 36.38px;
                 flex-direction: column;
@@ -411,7 +413,7 @@ const clickList = (id: number) => {
     }
 }
 
-@media (min-width: 600px) {
+@media (min-width: 375px) {
     .wrap {
         .sidebar {
             content {
