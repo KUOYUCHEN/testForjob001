@@ -1,5 +1,3 @@
-<!-- @format -->
-
 <script setup lang="ts">
 import { ref } from "vue";
 // mob選單控制

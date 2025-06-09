@@ -1,5 +1,16 @@
-# Vue 3 + TypeScript + Vite
+# 面試官：三宏科技
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+# 面試者：陳郭祐
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+# npm run dev
+# 請跑 port：5173
+
+# 依照 figma 兩種尺寸驗收
+- PC 版本： 1440px
+- 手機版本： 375px
+
+# 驗收範圍 (https://docs.google.com/document/d/1UEhN1DN5Hp9cdMav2UDy6YWMe-tnyuJGC7PIZDm-ppw/edit?tab=t.0)
+- [x] 可使用任意的 HTML / CSS / JavaScript Framework 使用 Vue3
+- [x] Logo 僅限使用 CSS 撰寫
+- [x] 選單的選項要能被選擇，需做出 selected 的效果
+- [x] 漢堡選單按鈕只在 mobile 版顯示，預設折疊，並且能折疊/展開選單
