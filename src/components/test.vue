@@ -8,38 +8,26 @@ const lists = ref([
     { id: 3, name: "白頭翁的美照", isfoucs: false },
     { id: 4, name: "白頭翁的危機", isfoucs: false },
 ]);
-const wrapPunctuationWithSub = (text: string) => {
-    return text.replace(/([，。！？、；：])/g, "<sub>$1</sub>");
-};
 const describes = ref([
     {
         id: 1,
-        text: wrapPunctuationWithSub(
-            "白頭鵯體長約17到22公分，額至頭頂純黑色而富有光　澤，兩眼上方至後枕白色，形成一白色枕環。耳羽後部有一白斑，此白環與白斑在黑色的頭部均極為醒目，老鳥的枕羽(後頭部)更潔白，所以又叫「白頭翁」。"
-        ),
-        mobText: wrapPunctuationWithSub(
-            "白頭鵯體長約17到22公分，額至頭頂純黑色而富有光澤，兩眼上方至後枕白色，形成一白色枕環。耳羽後部有一白斑，此白環與白斑在黑色的頭部均極為醒目，老鳥的枕羽(後頭部)更潔白，所以又叫「白頭翁」。"
-        ),
+        text: "白頭鵯體長約17到22公分，額至頭頂純黑色而富有光　澤，兩眼上方至後枕白色，形成一白色枕環。耳羽後部有一白斑，此白環與白斑在黑色的頭部均極為醒目，老鳥的枕羽(後頭部)更潔白，所以又叫「白頭翁」。",
+        mobText:
+            "白頭鵯體長約17到22公分，額至頭頂純黑色而富有光澤，兩眼上方至後枕白色，形成一白色枕環。耳羽後部有一白斑，此白環與白斑在黑色的頭部均極為醒目，老鳥的枕羽(後頭部)更潔白，所以又叫「白頭翁」。",
         name: "外觀",
     },
     {
         id: 2,
-        text: wrapPunctuationWithSub(
-            "白頭翁和麻雀、綠繡眼合　稱「城市三寶」，常成群出現在平原區灌木叢、丘陵樹林地帶，以及校園、公園、庭院、行道中的各種高高的電線與樹上。"
-        ),
-        mobText: wrapPunctuationWithSub(
-            "白頭翁和麻雀、綠繡眼合稱「城市三寶」，常成群出現在平原區灌木叢、丘陵樹林地帶，以及校園、公園、庭院、行道中的各種高高的電線與樹　上。"
-        ),
+        text: "白頭翁和麻雀、綠繡眼合　稱「城市三寶」，常成群出現在平原區灌木叢、丘陵樹林地帶，以及校園、公園、庭院、行道中的各種高高的電線與樹上。",
+        mobText:
+            "白頭翁和麻雀、綠繡眼合稱「城市三寶」，常成群出現在平原區灌木叢、丘陵樹林地帶，以及校園、公園、庭院、行道中的各種高高的電線與樹　上。",
         name: "棲地",
     },
     {
         id: 3,
-        text: wrapPunctuationWithSub(
-            "以果樹的漿果和種子為主　食，並時常飛入果園偷吃果實，還會吃嫩葉嫩芽，尤其是胡蝶蘭的嫩葉嫩芽葉，偶爾啄食昆蟲。"
-        ),
-        mobText: wrapPunctuationWithSub(
-            "以果樹的漿果和種子為主食，並時常飛入果園偷吃果實，還會吃嫩葉嫩芽，尤其是胡蝶蘭的嫩葉嫩芽葉，偶爾啄食昆　蟲。"
-        ),
+        text: "以果樹的漿果和種子為主　食，並時常飛入果園偷吃果實，還會吃嫩葉嫩芽，尤其是胡蝶蘭的嫩葉嫩芽葉，偶爾啄食昆蟲。",
+        mobText:
+            "以果樹的漿果和種子為主食，並時常飛入果園偷吃果實，還會吃嫩葉嫩芽，尤其是胡蝶蘭的嫩葉嫩芽葉，偶爾啄食昆　蟲。",
         name: "食性",
     },
 ]);
@@ -49,6 +37,41 @@ const clickList = (id: number) => {
         list.isfoucs = list.id === id;
     });
 };
+
+// 將數字與標點符號包成
+function renderWithPeriod(text: string) {
+    const arr: (string | { sub: string })[] = [];
+    let i = 0;
+    while (i < text.length) {
+        const char = text[i];
+        // 處理英文字母+數字組合
+        if (
+            /[A-Za-z]/.test(char) &&
+            i + 1 < text.length &&
+            /\d/.test(text[i + 1])
+        ) {
+            arr.push(char);
+            let num = "";
+            let j = i + 1;
+            while (j < text.length && /\d/.test(text[j])) {
+                num += text[j];
+                j++;
+            }
+            arr.push({ sub: num });
+            i = j;
+            continue;
+        }
+        // 處理標點符號
+        if (/([，。！？、；：])/u.test(char)) {
+            arr.push({ sub: char });
+            i++;
+            continue;
+        }
+        arr.push(char);
+        i++;
+    }
+    return arr;
+}
 </script>
 <template>
     <div class="wrap">
@@ -97,10 +120,21 @@ const clickList = (id: number) => {
             <div class="picture">
                 <div class="picContent">
                     <div class="picTitle">白頭翁 (Chinese bulbul)</div>
-                    <span class="picText"
-                        >又名白頭鵯<sub>。</sub>以果實<sub>、</sub>昆蟲為主食<sub>，</sub>無法消化小米<sub>、</sub>穀類<sub>。</sub>平均壽命約
-                        8~10 年<sub>。</sub></span
-                    >
+                    <span class="picText">
+                        <template
+                            v-for="(item, idx) in renderWithPeriod(
+                                '又名白頭鵯。以果實、昆蟲為主食，無法消化小米、穀類。平均壽命約 8~10 年。'
+                            )"
+                            :key="idx"
+                        >
+                            <template v-if="typeof item === 'string'">
+                                {{ item }}
+                            </template>
+                            <template v-else>
+                                <sub>{{ item.sub }}</sub>
+                            </template>
+                        </template>
+                    </span>
                 </div>
                 <img src="https://i.ibb.co/7dDqfvZn/img001.png" alt="" />
             </div>
@@ -114,8 +148,34 @@ const clickList = (id: number) => {
                         <div class="point"></div>
                         {{ describe.name }}
                     </div>
-                    <p class="pc" v-html="describe.text"></p>
-                    <p class="mob" v-html="describe.mobText"></p>
+                    <p class="pc">
+                        <template
+                            v-for="(item, idx) in renderWithPeriod(describe.text)"
+                            :key="idx"
+                        >
+                            <template v-if="typeof item === 'string'">
+                                {{ item }}
+                            </template>
+                            <template v-else>
+                                <sub>{{ item.sub }}</sub>
+                            </template>
+                        </template>
+                    </p>
+                    <p class="mob">
+                        <template
+                            v-for="(item, idx) in renderWithPeriod(
+                                describe.mobText
+                            )"
+                            :key="idx"
+                        >
+                            <template v-if="typeof item === 'string'">
+                                {{ item }}
+                            </template>
+                            <template v-else>
+                                <sub>{{ item.sub }}</sub>
+                            </template>
+                        </template>
+                    </p>
                 </div>
             </div>
         </div>
